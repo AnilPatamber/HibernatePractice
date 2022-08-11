@@ -12,7 +12,9 @@ public class Product {
     private String name;
     @Column
     private double price;
+    public Product(){
 
+    }
     public Product(int pid, String name, double price) {
         this.pid = pid;
         this.name = name;

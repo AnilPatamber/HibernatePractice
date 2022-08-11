@@ -18,6 +18,9 @@ public class Main {
         productList.add(new Product(4, "Apple McBook Pro", 80_000));
         System.out.println(productList);
         addProducts(productList);*/
+        int pid =3;
+        Product prod = getProductById(pid);
+        System.out.println("Prod received for id "+pid+" as\n"+prod);
 
     }
     public static void addProducts(List<Product> productList){
@@ -33,5 +36,12 @@ public class Main {
         session.getTransaction().commit();
         sessionFactory.close();
         System.out.println("Products added to the database successfully!!!");
+    }
+    public static Product getProductById(int i){
+        SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        Product prod = session.get(Product.class,i);
+        sessionFactory.close();
+        return prod;
     }
 }
